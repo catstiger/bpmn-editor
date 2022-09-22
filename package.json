@@ -1,10 +1,15 @@
 {
-  "name": "bpmn-editor",
-  "version": "1.0.0",
+  "name": "bpmn-jseditor",
+  "version": "1.0.10",
   "description": "View and edit BPMN 2.0 diagrams in the browser.",
   "main": "index.js",
+  "files": [
+    "dist",
+    "src/bpmn"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -12,9 +17,9 @@
   },
   "keywords": [
     "bpmn",
-    "bpmn",
-    "2.0",
+    "bpmn2",
     "bpmn-editor",
+    "bpmn-jseditor",
     "activity",
     "process",
     "modeler",
@@ -29,7 +34,12 @@
   },
   "homepage": "https://github.com/catstiger/bpmn-editor#readme",
   "dependencies": {
+    "@svgdotjs/svg.draggable.js": "^3.0.2",
     "@svgdotjs/svg.js": "^3.1.2",
     "underscore": "^1.13.4"
+  },
+  "devDependencies": {
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   }
 }
