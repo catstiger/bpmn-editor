@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../dist/bpmn-jseditor.js"></script>
+    <style>
+        #container {
+            padding: 20px;
+            height: 600px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+
+</div>
+<script>
+    window.onload = function() {
+        console.log(baseElement)
+        let stage = new Stage({
+            containerId: '#container'
+        })
+        stage.json('{"bounds":{"upperLeft":{"x":479,"y":374},"lowerRight":{"x":771,"y":454}},"childShapes":[{"outgoing":[{"resourceId":"_570094"}],"bounds":{"upperLeft":{"x":479,"y":396},"lowerRight":{"x":515,"y":432}},"childNodes":[],"dockers":[],"resourceId":"_736968","stencil":{"id":"StartNoneEvent"},"properties":{"trigger":"None","initiator":"initiator","name":"开始","formkeydefinition":"","formproperties":{"formProperties":[]},"executionlisteners":{"executionListeners":[]},"asynchronousdefinition":"No","exclusivedefinition":"Yes"}},{"bounds":{"upperLeft":{"x":575,"y":374},"lowerRight":{"x":675,"y":454}},"childShapes":[],"dockers":[],"outgoing":[{"resourceId":"_295064"}],"properties":{"asynchronousdefinition":"No","bgcolor":"#ffffff","bordercolor":"#000000","callacitivity":"","completioncondition":"","duedatedefinition":"","exclusivedefinition":"Yes","executionlisteners":"","formkeydefinition":"","formproperties":{"formProperties":[]},"inputdataitem":"","isforcompensation":"","loopcardinality":"","loopcondition":"","loopmaximum":"","looptype":"None","name":"用户任务","prioritydefinition":"","processid":"","properties":"","tasklisteners":"","usertaskassignment":{"assignment":{}}},"resourceId":"_831996","stencil":{"id":"UserTask"}},{"bounds":{"lowerRight":{"x":575,"y":414},"upperLeft":{"x":515,"y":414}},"childShapes":[],"dockers":[{"x":18,"y":18},{"x":50,"y":40}],"outgoing":[{"resourceId":"_831996"}],"target":{"resourceId":"_831996"},"properties":{"conditionalflow":"None","conditionsequenceflow":"","defaultflow":"None","overrideid":"","probability":"","executionlisteners":{"executionListeners":[]}},"resourceId":"_570094","stencil":{"id":"SequenceFlow"}},{"bounds":{"upperLeft":{"x":735,"y":396},"lowerRight":{"x":771,"y":432}},"childShapes":[],"dockers":[],"outgoing":[],"properties":{"executionlisteners":{"executionListeners":[]},"name":"结束","asynchronousdefinition":"No","exclusivedefinition":"Yes"},"resourceId":"_662545","stencil":{"id":"EndNoneEvent"}},{"bounds":{"lowerRight":{"x":735,"y":414},"upperLeft":{"x":675,"y":414}},"childShapes":[],"dockers":[{"x":50,"y":40},{"x":18,"y":18}],"outgoing":[{"resourceId":"_662545"}],"target":{"resourceId":"_662545"},"properties":{"conditionalflow":"None","conditionsequenceflow":"","defaultflow":"None","overrideid":"","probability":"","executionlisteners":{"executionListeners":[]}},"resourceId":"_295064","stencil":{"id":"SequenceFlow"}}],"properties":{"process_id":"process-1","name":"我的流程","documentation":"","process_namespace":"http://www.activiti.org/test","process_version":"","targetnamespace":"http://www.activiti.org/processdef","typelanguage":"http://www.w3.org/2001/XMLSchema","version":"","messages":[],"executionlisteners":{"executionListeners":[]},"eventlisteners":{"eventListeners":[]},"signaldefinitions":[],"messagedefinitions":[]},"resourceId":"canvas","ssextensions":[],"stencil":{"id":"BPMNDiagram"},"stencilset":{"namespace":"http://b3mn.org/stencilset/bpmn2.0#"}}')
+    }
+</script>
+</body>
+</html>
