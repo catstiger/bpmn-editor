@@ -1,7 +1,7 @@
 # bpmn-editor
 A javascript module that edits the BPMN on the browser.
 
-#安装
+# 安装
 ```shell script
 npm install bpmn-jseditor
 ```
