@@ -3,7 +3,7 @@ A javascript module that edits the BPMN on the browser.
 Bpmn Editor是一个可以在线查看和编辑[BPMN 2.0](https://www.omg.org/spec/BPMN/2.0/PDF "BPMN 2.0")流程图的Javascript库。它可以很方便的嵌入到流程相关的应用中
 使得您的客户可以根据自己的需要设计工作流程。
 
-![流程图](https://assets.honqun.cn/assets/process.png?x-oss-process=image/resize,p_50)
+![流程图](https://assets.honqun.cn/assets/process.png?x-oss-process=image/resize,w_830,m_lfit)
 
 # 安装
 ```shell script
@@ -85,8 +85,8 @@ for (let i = 0; i < selections.length; i++) {
 }
 ```
 
-### 点击节点
-可以再初始化的时候声明一个回调函数，以处理节点点击事件：
+# 事件
+可以在初始化的时候声明一个回调函数，以处理节点点击事件：
 ```javascript
 let editor = new BpmnEditor('#container', {
     name: 'My Process', //流程名称
@@ -105,3 +105,4 @@ elementClick方法的参数是点击的节点，如果没有点击任何节点�
 # TODO List
 - 支持流程嵌套
 - 支持更多的节点类型，例如：Service Task
+- 更多的事件以满足复杂的要求
