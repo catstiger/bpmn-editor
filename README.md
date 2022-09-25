@@ -3,7 +3,7 @@ A javascript module that edits the BPMN on the browser.
 Bpmn Editor是一个可以在线查看和编辑[BPMN 2.0](https://www.omg.org/spec/BPMN/2.0/PDF "BPMN 2.0")流程图的Javascript库。它可以很方便的嵌入到流程相关的应用中
 使得您的客户可以根据自己的需要设计工作流程。
 
-![流程图](https://assets.honqun.cn/assets/process.png?x-oss-process=image/resize,w_830,m_lfit)
+![流程图](https://assets.honqun.cn/assets/process.jpg?x-oss-process=image/resize,w_830,m_lfit)
 
 # 安装
 ```shell script
