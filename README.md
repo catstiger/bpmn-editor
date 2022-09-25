@@ -7,5 +7,5 @@ npm install bpmn-jseditor
 ```
 或者
 ```html
-<script src="dist/bpmn-jseditor.js"></script>
+<script src="dist/bpmn-jseditor.min.js"></script>
 ```

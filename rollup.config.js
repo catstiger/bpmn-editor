@@ -26,10 +26,7 @@ export default {
         }
     ],
     plugins: [
-        // resolve(),
         resolve({ mainFields: ["jsnext", "preferBuiltins", "browser"] }),
-        // resolve({ jsnext: true, preferBuiltins: true, browser: true }),
-        // builtins(),
         commonjs({
             browser: true
         }),

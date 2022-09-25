@@ -3,11 +3,11 @@ import {OPERATIONS} from "./Constants";
 import axios from "axios";
 
 class Editor extends Stage {
-    converterURL = 'http://101.42.253.152:9090/workflow/api/json/convert'
+    url = 'http://101.42.253.152:9090/workflow/api/json/convert'
 
     constructor(container, properties) {
         super(container, properties);
-        this.converterURL = properties.converterURL ?? this.converterURL
+        this.url = properties.url ?? this.url
     }
 
     /**
@@ -27,11 +27,11 @@ class Editor extends Stage {
      *     </li>
      *
      * </ul>
-     * @param convertURL
+     * @param url
      * @return {Editor}
      */
-    convertURL(convertURL) {
-        this.converterURL = convertURL
+    url(url) {
+        this.converterURL = url
         return this;
     }
 
@@ -49,7 +49,7 @@ class Editor extends Stage {
                 let param = {xml: xmlStr}
                 //XML转为JSON
                 axios.post(
-                    me.converterURL,
+                    me.url,
                     param
                 ).then((resp) => {
                     if (resp.data.success) {
@@ -69,10 +69,10 @@ class Editor extends Stage {
                 let param = {json: JSON.stringify(me.json())}
                 //JSON转换为XML
                 axios.post(
-                    me.converterURL,
+                    me.url,
                     param
                 ).then((resp) => {
-                    if (resp.success) {
+                    if (resp.data.success) {
                         let xml = resp.data.data.xml
                         resolve({
                             success: true,
@@ -89,8 +89,11 @@ class Editor extends Stage {
         }
     }
 
-    _setXML(xmlStr) {
-
+    /**
+     * 导出SVG
+     */
+    exportSVG() {
+        return this.svgDraw.svg()
     }
 
     static operations = OPERATIONS
