@@ -1,19 +1,20 @@
 import {SVG} from "@svgdotjs/svg.js"
+import _ from "underscore"
+import {COLORS, CONSTANTS, OPERATIONS, STENCIL} from "./Constants";
+
 import UserTask from "./UserTask";
 import FlowNode from "./FlowNode";
 import SequenceFlow from "./SequenceFlow";
 import StartEvent from "./StartEvent"
 import EndEvent from "./EndEvent";
 import ExclusiveGateway from "./ExclusiveGateway";
-import _ from "underscore"
 import SubProcess from "./SubProcess";
-import {COLORS, CONSTANTS, OPERATIONS, STENCIL} from "./Constants";
 import Elements from "./Elements";
 import Shadows from "./Shadows";
 import BoundaryTimerEvent from "./BoundaryTimerEvent";
 import DockedObject from "./DockedObject";
 import BoundaryEvent from "./BoundaryEvent";
-
+import BaseElement from "./BaseElement";
 
 /**
  * 流程图舞台，用于控制流程图中的各个元素
@@ -54,7 +55,8 @@ class Stage {
             container = '#' + container;
         }
         this.containerId = container;
-        this.readonly = properties.readonly !== false
+        //(!properties.readonly) ? this.readonly = false : this.readonly = true
+        this.readonly = properties.readonly;
 
         this.svgDraw = SVG()
             .addTo(container)
@@ -94,6 +96,7 @@ class Stage {
         }
 
         this.floatBarSelector = properties.floatBarSelector
+        this.inputSelector = properties.inputSelector
     }
 
     setOperation(operation) {
@@ -299,9 +302,12 @@ class Stage {
         }
 
         if (dest) {
+            if (dest._type === SubProcess && source.parent && source.parent.flowProperties.stencil.id === STENCIL.subProcess) {
+                throw '暂不支持子流程嵌套'
+            }
             //如果创建的节点与其他节点重合，则调整位置
             let angle = 0, length = Math.abs(dest.cx - source.box.cx), node = null;
-            while (true) {
+            while (true) { //循环计算位置冲突
                 //左上角，用于计算box交叉
                 dest.x = dest.cx - dest.width / 2
                 dest.y = dest.cy - dest.height / 2
@@ -316,7 +322,7 @@ class Stage {
                 })
                 if (conflict) { //有交叉，则调整45°再次计算
                     angle += Math.PI / 4
-                    if (angle >= Math.PI * 2) break;
+                    if (angle >= Math.PI * 2) break; //转了一圈，没有位置
                     dest.cx = source.box.cx + Math.round(length * Math.cos(angle))
                     dest.cy = source.box.cy - Math.round(length * Math.sin(angle))
                 } else {
@@ -329,6 +335,9 @@ class Stage {
             if (node) {
                 //如果source位于subprocess内部，则要确保新的节点在subprocess内部
                 if (source.parent && source.parent.flowProperties.stencil.id === STENCIL.subProcess) {
+                    if (node.flowProperties.stencil.id === STENCIL.subProcess) {
+                        throw '暂不支持子流程嵌套'
+                    }
                     if (!this.boxContains(source.parent.getBox(), node.getBox())) {
                         let children = source.parent.childShapes
                         children.push(node)
@@ -565,7 +574,7 @@ class Stage {
         }
         if (json.properties) {
             this.flowProperties.properties.name = json.properties.name
-            this.flowProperties.properties.process_id = json.properties.process_id ?? 'process-' + (Math.random() * 1000000).toFixed
+            this.flowProperties.properties.process_id = json.properties.process_id ?? BaseElement._id
             this.flowProperties.properties.documentation = json.properties.documentation ?? ''
             this.flowProperties.properties.executionlisteners = json.properties.executionlisteners
         }
@@ -1818,12 +1827,12 @@ class Stage {
         if (element.parent) {
             _.each(tools.childNodes, function (button) {
                 if (_.isFunction(button.getAttribute)) {
-                    if (button.getAttribute('class').indexOf('icon-subprocess') >= 0) {
+                    let className = button.getAttribute('class')
+                    if (className.indexOf('icon-subprocess') >= 0) {
                         button.style.display = 'none'
                     }
                 }
             })
-
         }
     }
 

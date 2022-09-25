@@ -57,7 +57,7 @@ class BaseElement {
 
     constructor(stage, properties) {
         this.stage = stage
-        this.id = properties.id ?? this._getElementType().toLowerCase() + '_' + BaseElement._id()
+        this.id = properties.id ?? BaseElement._id()
         this.flowProperties = {
             resourceId: this.id,
             stencil: {
@@ -70,7 +70,10 @@ class BaseElement {
     }
 
     static _id() {
-        return (Math.random() * 1000000).toFixed(0)
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
+            return v.toString(16);
+        });
     }
 
     _getElementType() {

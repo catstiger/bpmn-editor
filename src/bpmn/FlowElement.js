@@ -1,5 +1,5 @@
 import BaseElement from "./BaseElement"
-import {COLORS, CONSTANTS, STENCIL} from "./Constants";
+import {COLORS, STENCIL} from "./Constants";
 import {SVG} from "@svgdotjs/svg.js";
 import _ from "underscore"
 
@@ -42,23 +42,28 @@ class FlowElement extends BaseElement {
         me.hideOutline()
 
         let editor = SVG(this.stage.inputSelector).node;
+        console.log(editor.children[0])
+        if (!editor.children || editor.children.length === 0) {
+            console.log('No input tag found')
+            return;
+        }
 
         let w = text.length * 12 + 2 * 12;
         if (w < 50) w = 50
-        editor.childNodes[0].style.fontSize = '12px'
-        editor.childNodes[0].style.width = w + 'px'
+        editor.children[0].style.fontSize = '12px'
+        editor.children[0].style.width = w + 'px'
 
-        editor.style.width =  w + 'px'
+        editor.style.width = w + 'px'
         editor.style.display = 'block'
         editor.style.left = (e.clientX - e.offsetX) + this.box.x + this.box.width / 2 - editor.clientWidth / 2 + 'px'
 
         if (this.flowProperties.stencil.id === STENCIL.startEvent || this.flowProperties.stencil.id === STENCIL.endEvent) {
             editor.style.top = (e.clientY - e.offsetY) + this.box.y + this.box.height + 5 + 'px'
-        } else if (this.flowProperties.stencil.id === STENCIL.sequenceFlow ) {
+        } else if (this.flowProperties.stencil.id === STENCIL.sequenceFlow) {
             let point = this.getSequenceFlowTextPoint(text)
             editor.style.top = (e.clientY - e.offsetY) + point.y - 12 + 'px'
             editor.style.left = (e.clientX - e.offsetX) + point.x + 'px'
-        } else if (this.flowProperties.stencil.id === STENCIL.subProcess ) {
+        } else if (this.flowProperties.stencil.id === STENCIL.subProcess) {
             editor.style.top = (e.clientY - e.offsetY) + this.box.y + 'px'
         } else {
             editor.style.top = (e.clientY - e.offsetY) + this.box.y + this.box.height / 2 - 12 + 'px'
