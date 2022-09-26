@@ -45,6 +45,7 @@ class Editor extends Stage {
         let me = this;
 
         if (xmlStr) { //加载XML
+
             return new Promise((resolve, reject)=>{
                 let param = {xml: xmlStr}
                 //XML转为JSON
