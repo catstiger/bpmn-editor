@@ -3,104 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Bpmn Editor</title>
+    <meta name="keywords" content="BPMN,Activit,工作流,流程在线">
+    <meta name="description" content="Bpmn Editor是一个可以在线查看和编辑BPMN 2.0流程图的Javascript库。它可以很方便的嵌入到流程相关的应用中 使得您的客户可以根据自己的需要设计工作流程。">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
     <script src="../dist/bpmn-jseditor.js"></script>
+
     <link rel="icon" href="https://assets.honqun.cn/logo/favicon.png"/>
     <link href="//at.alicdn.com/t/c/font_3594306_rxtwnc4x7f9.css" rel="stylesheet">
-    <style>
-        #container {
-            border: 1px solid #eee;
-            background: #fff url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMTBoNDBNMTAgMHY0ME0wIDIwaDQwTTIwIDB2NDBNMCAzMGg0ME0zMCAwdjQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlMGUwZTAiIG9wYWNpdHk9Ii4yIi8+PHBhdGggZD0iTTQwIDBIMHY0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTBlMGUwIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2EpIi8+PC9zdmc+) repeat !important;
-            float: left;
-            width: 80%;
-        }
-
-        #forms {
-            float: left;
-            width: 19%;
-        }
-
-        #name-editor {
-            display: none;
-            position: absolute;
-        }
-
-        #name-editor input {
-            height: 30px;
-            line-height: 30px;
-            padding: 0 11px;
-            box-sizing: border-box;
-            width: 80px;
-            border: none;
-            box-shadow: 0 0 0 1px #ddd inset;
-            border-radius: 3px;
-            outline: 0;
-        }
-
-        #float-bar {
-            display: none;
-            position: absolute;
-        }
-
-        #float-bar button {
-            width: 38px;
-            height: 38px;
-            padding: 10px;
-        }
-
-        .bar {
-            padding: 10px 0px 15px 0px;
-            border-bottom: 1px solid #eee;
-        }
-
-        button {
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            background-color: white;
-            padding: 6px 15px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #ecf5ff;
-        }
-
-        button.danger {
-            background-color: #f56c6c;
-            color: white;
-        }
-
-        button.danger:hover {
-            background-color: #f89898;
-        }
-
-        button.primary {
-            background-color: #409EFF;
-            color: white;
-        }
-
-        button.primary:hover {
-            background-color: #66B1FF;
-            color: white;
-        }
-    </style>
+    <link href="example.css" rel="stylesheet">
 </head>
 <body>
 <div class="bar" id="bar">
-    <button onclick="addElement(BpmnEditor.operations.ADD_STARTEVENT)"><i class="iconfont icon-start-event-none"></i>
+    <button onclick="addElement(BpmnEditor.operations.ADD_STARTEVENT)">
+        <i class="iconfont icon-start-event-none"></i>
     </button>
-    <button onclick="addElement(BpmnEditor.operations.ADD_USERTASK)"><i class="iconfont icon-user-task"></i></button>
-    <button onclick="addElement(BpmnEditor.operations.ADD_ENDEVENT)"><i class="iconfont icon-end-event-none"></i>
+    <button onclick="addElement(BpmnEditor.operations.ADD_USERTASK)">
+        <i class="iconfont icon-user-task"></i></button>
+    <button onclick="addElement(BpmnEditor.operations.ADD_ENDEVENT)">
+        <i class="iconfont icon-end-event-none"></i>
     </button>
-    <button onclick="addElement(BpmnEditor.operations.ADD_SUBPROCESS)"><i class="iconfont icon-subprocess"></i></button>
-    <button onclick="addElement(BpmnEditor.operations.ADD_EXCLUSIVE_GATEWAY)"><i class="iconfont icon-gateway-xor"></i>
+    <button onclick="addElement(BpmnEditor.operations.ADD_SUBPROCESS)">
+        <i class="iconfont icon-subprocess"></i></button>
+    <button onclick="addElement(BpmnEditor.operations.ADD_EXCLUSIVE_GATEWAY)">
+        <i class="iconfont icon-gateway-xor"></i>
     </button>
-    <button onclick="addElement(BpmnEditor.operations.ADD_TIMEREVENT)"><i class="iconfont icon-timer"></i></button>
-    <button onclick="addElement(BpmnEditor.operations.PREPARE_DRAW_CONNECTION)"><i class="iconfont icon-connection"></i>
+    <button onclick="addElement(BpmnEditor.operations.ADD_TIMEREVENT)">
+        <i class="iconfont icon-timer"></i></button>
+    <button onclick="addElement(BpmnEditor.operations.PREPARE_DRAW_CONNECTION)">
+        <i class="iconfont icon-connection"></i>
     </button>
 
     <button onclick="exportSVG()" class="primary"><i class="iconfont icon-image"></i></button>
     <button onclick="openBpmn()" class="primary"><i class="iconfont icon-upload"></i></button>
     <button onclick="getBpmn()" class="primary"><i class="iconfont icon-download"></i></button>
+
+    <div class="tips" id="tips"></div>
+
     <a href="https://www.honqun.cn" target="_blank">
         <img src="https://assets.honqun.cn/logo/logo-icon.png?x-oss-process=image/resize,m_fixed,h_30,w_30"
              style="float: right">
@@ -113,6 +53,23 @@
     </div>
     <!--forms-->
     <div id="forms">
+        <form>
+            <div>
+                <label for="id">节点标识</label> <input id="id" name="id" readonly>
+            </div>
+            <div>
+                <label for="name">节点名称</label> <input id="name" name="name">
+            </div>
+
+            <div>
+                <label for="documentation">节点文档</label>
+                <textarea id="documentation" name="documentation" style="height: 100px"></textarea>
+            </div>
+            <div style="text-align: center">
+                <button class="primary" type="button" onclick="saveProperties()">保存</button>
+            </div>
+        </form>
+
     </div>
 </div>
 
@@ -138,6 +95,18 @@
 </div>
 <script>
     let editor;
+    let currentElement; //当前选择的节点
+
+    function tips(msg) {
+        document.getElementById('tips').innerHTML = msg
+        document.getElementById('tips').style.display = 'inline'
+        let i = setTimeout(function () {
+            clearTimeout(i)
+            document.getElementById('tips').innerHTML = ''
+            document.getElementById('tips').style.display = 'none'
+        }, 5000)
+    }
+
     window.onload = function () {
         document.getElementById('container').style.height = document.documentElement.clientHeight - 120 + 'px'
         document.getElementById('forms').style.height = document.documentElement.clientHeight - 120 + 'px'
@@ -168,7 +137,7 @@
                 let file = files[i]
 
                 if (!file.name.endsWith('.xml') && !file.name.endsWith('.bpmn')) {
-                    alert('请选择XML文件或者BPMN文件')
+                    tips('请选择XML文件或者BPMN文件')
                     return;
                 }
                 let reader = new FileReader();
@@ -182,10 +151,26 @@
                 }
             }
         })
+
+        tips('拖动BPMN流程文件(.bpmn/.xml)到编辑区以打开文件')
     }
 
     function clickElement(element) {
-        console.log(element.json())
+        currentElement = element;
+        let data = element.json()
+        document.getElementById('id').value = data.resourceId
+        document.getElementById('name').value = data.properties.name ?? ''
+        document.getElementById('documentation').value = data.properties.documentation ?? ''
+    }
+
+    function saveProperties() {
+        if (!currentElement) {
+            return;
+        }
+        let data = currentElement.json();
+        data.properties.name = document.getElementById('name').value
+        data.properties.documentation = document.getElementById('documentation').value
+        currentElement.update(data)
     }
 
     function floatBar(type) {
@@ -197,7 +182,7 @@
     }
 
     function openBpmn() {
-        alert('Drag the .bpmn or .xml file to the editing area')
+        tips('拖动BPMN流程文件(.bpmn/.xml)到编辑区以打开文件')
     }
 
     /**
@@ -209,6 +194,7 @@
         })
     }
 
+
     function exportSVG() {
         let svg = editor.exportSVG()
 
@@ -219,6 +205,8 @@
         saveLink.download = editor.json().properties.name + '.svg';
         saveLink.click();
     }
+
+
 
 </script>
 </body>

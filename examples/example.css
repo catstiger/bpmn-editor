@@ -1,0 +1,133 @@
+body {
+    margin: 0px;
+    padding: 0px
+}
+
+#container {
+    border: 1px solid #eee;
+    background: #fff url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMTBoNDBNMTAgMHY0ME0wIDIwaDQwTTIwIDB2NDBNMCAzMGg0ME0zMCAwdjQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlMGUwZTAiIG9wYWNpdHk9Ii4yIi8+PHBhdGggZD0iTTQwIDBIMHY0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTBlMGUwIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2EpIi8+PC9zdmc+) repeat !important;
+    float: left;
+    width: 80%;
+}
+
+#forms {
+    float: left;
+    width: 19%;
+    padding: 20px 0;
+}
+
+#forms form {
+    padding: 0px 20px
+}
+
+#forms form div {
+    padding: 5px 0px
+}
+
+#forms form div label {
+    padding: 0px 20px 0 0;
+    vertical-align: top;
+}
+
+#forms form div input, #forms form div textarea {
+    height: 32px;
+    line-height: 32px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px #dcdfe6 inset;
+    padding: 0 11px;
+    outline: none;
+    min-width: 220px;
+}
+
+#forms form div input:hover, #forms form div input:focus,
+#forms form div textarea:hover, #forms form div textarea:focus {
+    box-shadow: 0 0 0 1px #409eff inset;
+}
+
+#name-editor {
+    display: none;
+    position: absolute;
+}
+
+#name-editor input {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 11px;
+    box-sizing: border-box;
+    width: 80px;
+    border: none;
+    box-shadow: 0 0 0 1px #ddd inset;
+    border-radius: 3px;
+    outline: 0;
+}
+
+#float-bar {
+    display: none;
+    position: absolute;
+}
+
+#float-bar button {
+    width: 38px;
+    height: 38px;
+    padding: 10px;
+}
+
+.bar {
+    padding: 10px 10px 15px 10px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.12);
+}
+
+button {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: white;
+    padding: 6px 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ecf5ff;
+}
+
+button:active {
+    background-color: #ecf5ff;
+    border-color: #409EFF;
+}
+
+button.danger {
+    background-color: #f56c6c;
+    color: white;
+}
+
+button.danger:hover {
+    background-color: #f89898;
+}
+
+button.primary {
+    background-color: #409EFF;
+    border-color: #409EFF;
+    color: white;
+}
+
+button.primary:hover {
+    background-color: #66B1FF;
+    color: white;
+}
+button.primary:active {
+    background-color: #c2e0ff;
+    border-color: #409EFF;
+}
+
+div.tips {
+    position: relative;
+    padding: 0.5rem 2rem;
+    margin-bottom: 1rem;
+    margin-left: 3rem;
+    border-radius: 0.25rem;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    display: none;
+
+}
