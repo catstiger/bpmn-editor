@@ -3,7 +3,7 @@ import {OPERATIONS} from "./Constants";
 import axios from "axios";
 
 class Editor extends Stage {
-    url = 'http://101.42.253.152:9090/workflow/api/json/convert'
+    url = '//bpmn.honqun.com/workflow/api/json/convert'
 
     constructor(container, properties) {
         super(container, properties);
