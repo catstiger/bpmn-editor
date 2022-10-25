@@ -3,11 +3,11 @@ import {OPERATIONS} from "./Constants";
 import axios from "axios";
 
 class Editor extends Stage {
-    url = '//bpmn.honqun.com/workflow/api/json/convert'
+    converterURL = '//bpmn.honqun.com/workflow/api/json/convert'
 
     constructor(container, properties) {
         super(container, properties);
-        this.url = properties.url ?? this.url
+        this.converterURL = properties.converterURL ?? this.converterURL
     }
 
     /**
@@ -50,7 +50,7 @@ class Editor extends Stage {
                 let param = {xml: xmlStr}
                 //XML转为JSON
                 axios.post(
-                    me.url,
+                    me.converterURL,
                     param
                 ).then((resp) => {
                     if (resp.data.success) {
@@ -70,7 +70,7 @@ class Editor extends Stage {
                 let param = {json: JSON.stringify(me.json())}
                 //JSON转换为XML
                 axios.post(
-                    me.url,
+                    me.converterURL,
                     param
                 ).then((resp) => {
                     if (resp.data.success) {

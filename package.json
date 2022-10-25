@@ -1,6 +1,6 @@
 {
   "name": "bpmn-jseditor",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "View and edit BPMN 2.0 diagrams in the browser.",
   "main": "index.js",
   "files": [
