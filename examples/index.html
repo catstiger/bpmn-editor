@@ -112,6 +112,7 @@
         document.getElementById('forms').style.height = document.documentElement.clientHeight - 120 + 'px'
 
         editor = new BpmnEditor('#container', {
+            converterURL: 'http://localhost:8090/workflow/api/json/convert',
             name: 'B',
             key: 'A',
             elementClick: clickElement,
@@ -191,6 +192,7 @@
     function getBpmn() {
         editor.xml().then((resp) => {
             alert(resp.xml)
+            console.log(resp.xml)
         })
     }
 
