@@ -293,17 +293,23 @@ class BaseElement {
         }
         let x, y;
 
-        let b1 = (p2.y * p1.x - p1.y * p2.x) / (p1.x - p2.x); //截距1
-        let k1 = (p2.y - b1) / p2.x; //斜率1
-        let b2 = (p4.y * p3.x - p3.y * p4.x) / (p3.x - p4.x); //截距2
-        let k2 = (p4.y - b2) / p4.x; //斜率2
-        if (p1.x === p2.x) {
+        if (p1.x === p2.x) { //第一条线垂直
+            let k2 = (p4.y - p3.y) / (p4.x - p3.x)
+            let b2 = (p4.y * p3.x - p3.y * p4.x) / (p3.x - p4.x);
             x = p1.x;
-            y = k2 * x + b2;
-        } else if (p3.x === p4.x) {
+            y = k2 * p1.x + b2
+        }
+        else if (p3.x === p4.x) {//第二条线垂直
+            let k1 = (p2.y - p1.y) / (p2.x - p1.x)
+            let b1 = (p2.y * p1.x - p1.y * p2.x) / (p1.x - p2.x);
             x = p3.x;
-            y = k1 * x + b1;
-        } else {
+            y = k1 * p3.x + b1
+        }
+        else {
+            let b1 = (p2.y * p1.x - p1.y * p2.x) / (p1.x - p2.x); //截距1
+            let k1 = (p2.y - b1) / p2.x; //斜率1
+            let b2 = (p4.y * p3.x - p3.y * p4.x) / (p3.x - p4.x); //截距2
+            let k2 = (p4.y - b2) / p4.x; //斜率2
             x = (b2 - b1) / (k1 - k2);
             y = k1 * x + b1;
         }
