@@ -4,9 +4,9 @@ import {COLORS, CONSTANTS, STENCIL} from "./Constants";
 import Shadows from "./Shadows";
 import _ from "underscore";
 
-class UserTask extends Activity {
+class ServiceTask extends Activity {
     constructor(stage, properties) {
-        properties.type = STENCIL.userTask
+        properties.type = STENCIL.serviceTask
         super(stage, properties)
 
         this._setSize(properties,
@@ -32,7 +32,7 @@ class UserTask extends Activity {
             .radius(CONSTANTS.BORDER_RADIUS)
             .fill({color: '#fff', opacity: 0.9})
         this.setText(shapeGroup, this.flowProperties.properties.name)
-        Shadows._userIcon(shapeGroup)
+        Shadows._serviceIcon(shapeGroup)
 
         this.svgGroup.rect(this.box.width + 12, this.box.height + 12).addClass('e-outline')
             .x(-6).y(-6)
@@ -50,7 +50,7 @@ class UserTask extends Activity {
     }
 
     createShadow() {
-        return Shadows.userTask(this.stage, this, COLORS.HIGHLIGHT_COLOR)
+        return Shadows.serviceTask(this.stage, this, COLORS.HIGHLIGHT_COLOR)
     }
 
     /**
@@ -87,11 +87,6 @@ class UserTask extends Activity {
                 duedatedefinition: "",
                 exclusivedefinition: "Yes",
                 executionlisteners: "",
-                formkeydefinition: "",
-                formproperties: {
-                    formProperties: []
-                },
-                inputdataitem: "",
                 isforcompensation: "",
                 loopcardinality: "",
                 loopcondition: "",
@@ -102,11 +97,9 @@ class UserTask extends Activity {
                 processid: "",
                 properties: "",
                 tasklisteners: "",
-                usertaskassignment: {
-                    assignment: {
-
-                    }
-                }
+                servicetaskclass: "",
+                servicetaskdelegateexpression: "",
+                servicetaskexpression: ""
             },
             resourceId: this.flowProperties.resourceId,
             stencil: {
@@ -128,4 +121,4 @@ class UserTask extends Activity {
 
 }
 
-export default UserTask
+export default ServiceTask

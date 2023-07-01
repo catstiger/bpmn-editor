@@ -3,6 +3,7 @@ import _ from "underscore"
 import {COLORS, CONSTANTS, OPERATIONS, STENCIL} from "./Constants";
 
 import UserTask from "./UserTask";
+import ServiceTask from "./ServiceTask";
 import FlowNode from "./FlowNode";
 import SequenceFlow from "./SequenceFlow";
 import StartEvent from "./StartEvent"
@@ -167,6 +168,13 @@ class Stage {
         return userTask;
     }
 
+    addServiceTask(properties) {
+        let serviceTask = new ServiceTask(this, properties).draw()
+        this.elements.add(serviceTask)
+        this._addToSubProcessIfPossible(serviceTask)
+        return serviceTask;
+    }
+
     addSequenceFlow(properties) {
         let sequenceFlow = new SequenceFlow(this, properties).draw()
         this.elements.add(sequenceFlow)
@@ -247,6 +255,17 @@ class Stage {
                 dest = {
                     _type: UserTask,
                     name: '用户任务',
+                    cx: cx + CONSTANTS.DEFAULT_WIDTH / 2,
+                    cy: cy,
+                    width: CONSTANTS.DEFAULT_WIDTH,
+                    height: CONSTANTS.DEFAULT_HEIGHT
+                }
+                break;
+            }
+            case OPERATIONS.ADD_SERVICETASK: {
+                dest = {
+                    _type: ServiceTask,
+                    name: '服务任务',
                     cx: cx + CONSTANTS.DEFAULT_WIDTH / 2,
                     cy: cy,
                     width: CONSTANTS.DEFAULT_WIDTH,
@@ -672,6 +691,20 @@ class Stage {
                     if (valid.valid) {
                         me.addUserTask({
                             name: '用户任务', cx: e.offsetX, cy: e.offsetY
+                        })
+                        me.setOperation(OPERATIONS.NONE)
+                    } else {
+                        me._resetFill(valid.target)
+                    }
+                    break
+                }
+                //新增ServiceTask
+                case OPERATIONS.ADD_SERVICETASK: {
+                    if (me.readonly) break;
+                    let valid = me._validateTargetPosition(me.shadowNode);
+                    if (valid.valid) {
+                        me.addServiceTask({
+                            name: '服务任务', cx: e.offsetX, cy: e.offsetY
                         })
                         me.setOperation(OPERATIONS.NONE)
                     } else {
@@ -1105,6 +1138,15 @@ class Stage {
                 }
                 break
             }
+
+            //新增Service
+            case OPERATIONS.ADD_SERVICETASK: {
+                if (!me.shadowNode) {
+                    me.shadowNode = Shadows.serviceTask(this, null, color)
+                }
+                break
+            }
+
             //新增StartNode
             case OPERATIONS.ADD_STARTEVENT: {
                 if (!me.shadowNode) {
@@ -1904,6 +1946,14 @@ class Stage {
             let node;
             if (element.stencil.id === STENCIL.userTask) {
                 node = stage.addUserTask({
+                    id: element.resourceId,
+                    name: element.properties.name,
+                    x: 0,
+                    y: 0
+                }).json(element)
+            }
+            if (element.stencil.id === STENCIL.serviceTask) {
+                node = stage.addServiceTask({
                     id: element.resourceId,
                     name: element.properties.name,
                     x: 0,

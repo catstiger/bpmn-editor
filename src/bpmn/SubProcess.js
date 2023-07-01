@@ -479,9 +479,9 @@ class SubProcess extends Activity {
 
                 childShape.bounds = bounds
             })
-            //创建节点
+            创建节点
             let nodes = Stage.loadElements(this.stage, json.childShapes)
-            //将节点加入子流程
+            将节点加入子流程
             _.each(nodes, function (node) {
                 me.addChild(node)
             });

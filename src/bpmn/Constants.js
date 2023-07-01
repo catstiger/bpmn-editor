@@ -3,6 +3,7 @@ export const STENCIL = {
     endEvent: 'EndNoneEvent',
     sequenceFlow: 'SequenceFlow',
     userTask: 'UserTask',
+    serviceTask: 'ServiceTask',
     exclusiveGateway: 'ExclusiveGateway',
     subProcess: 'SubProcess',
     boundaryTimerEvent: 'BoundaryTimerEvent'
@@ -30,6 +31,7 @@ export const CONSTANTS = {
 export const OPERATIONS = {
     NONE: 'none',
     ADD_USERTASK: 'add_usertask',
+    ADD_SERVICETASK: 'add_servicetask',
     ADD_EXCLUSIVE_GATEWAY: 'add_exclusive_gateway',
     ADD_STARTEVENT: 'add_startevent',
     ADD_ENDEVENT: 'add_end_event',

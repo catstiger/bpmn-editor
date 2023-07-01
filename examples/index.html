@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Bpmn Editor</title>
     <meta name="keywords" content="BPMN,Activit,工作流,流程在线">
-    <meta name="description" content="Bpmn Editor是一个可以在线查看和编辑BPMN 2.0流程图的Javascript库。它可以很方便的嵌入到流程相关的应用中 使得您的客户可以根据自己的需要设计工作流程。">
+    <meta name="description"
+          content="Bpmn Editor是一个可以在线查看和编辑BPMN 2.0流程图的Javascript库。它可以很方便的嵌入到流程相关的应用中 使得您的客户可以根据自己的需要设计工作流程。">
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 
@@ -20,7 +21,11 @@
         <i class="iconfont icon-start-event-none"></i>
     </button>
     <button onclick="addElement(BpmnEditor.operations.ADD_USERTASK)">
-        <i class="iconfont icon-user-task"></i></button>
+        <i class="iconfont icon-user-task"></i>
+    </button>
+    <button onclick="addElement(BpmnEditor.operations.ADD_SERVICETASK)">
+        <i class="iconfont icon-service-task"></i>
+    </button>
     <button onclick="addElement(BpmnEditor.operations.ADD_ENDEVENT)">
         <i class="iconfont icon-end-event-none"></i>
     </button>
@@ -83,6 +88,7 @@
     <button onclick="floatBar(BpmnEditor.operations.ADD_STARTEVENT)"><i class="iconfont icon-start-event-none"></i>
     </button>
     <button onclick="floatBar(BpmnEditor.operations.ADD_USERTASK)"><i class="iconfont icon-user-task"></i></button>
+    <button onclick="floatBar(BpmnEditor.operations.ADD_SERVICETASK)"><i class="iconfont icon-service-task"></i></button>
     <button onclick="floatBar(BpmnEditor.operations.ADD_ENDEVENT)"><i class="iconfont icon-end-event-none"></i></button>
     <button onclick="floatBar(BpmnEditor.operations.ADD_SUBPROCESS)"><i class="iconfont icon-subprocess"></i></button>
     <button onclick="floatBar(BpmnEditor.operations.ADD_EXCLUSIVE_GATEWAY)"><i class="iconfont icon-gateway-xor"></i>
@@ -207,7 +213,6 @@
         saveLink.download = editor.json().properties.name + '.svg';
         saveLink.click();
     }
-
 
 
 </script>
