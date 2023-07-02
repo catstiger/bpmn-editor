@@ -99,7 +99,8 @@ class ServiceTask extends Activity {
                 tasklisteners: "",
                 servicetaskclass: "",
                 servicetaskdelegateexpression: "",
-                servicetaskexpression: ""
+                servicetaskexpression: "",
+                servicetaskresultvariable : "resultVar",
             },
             resourceId: this.flowProperties.resourceId,
             stencil: {
