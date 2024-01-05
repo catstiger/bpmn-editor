@@ -42,9 +42,8 @@ class FlowElement extends BaseElement {
         me.hideOutline()
 
         let editor = SVG(this.stage.inputSelector).node;
-        console.log(editor.children[0])
         if (!editor.children || editor.children.length === 0) {
-            console.log('No input tag found')
+            console.log('No input tag found！')
             return;
         }
 
